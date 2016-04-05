@@ -31,5 +31,13 @@ $(document).ready(function() {
     });
   });
   
+  $('#playlists div span').click(function() {
+    var details = $(this);
+    $.get('/playlist/' + details.parent().attr('playlist'), function(data) {
+      details.html(' (' + data.artists + ' artist' + (data.artists != 1? 's': '') + ' | ' +
+        data.tracks + ' tracks | <strong>$' + Math.round(data.price) + '</strong> total)');
+    });
+  });
+  
   
 });
